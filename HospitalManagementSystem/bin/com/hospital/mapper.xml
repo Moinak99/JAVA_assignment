@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Patient">
+ <insert id="insert" parameterType="com.hospital.AddDetailsModel">
+  INSERT INTO patientdb (patientname, patientage, patientaddress,diseasedetails,doctorname,paymentdetails ) VALUES (#{patientname}, #{patientage},
+  #{patientaddress},#{diseasedetails},#{doctorname},#{paymentdetails});
+ </insert>
+ <resultMap id="result" type="com.hospital.AddDetailsModel">
+  <result property="id" column="id" />
+  <result property="patientname" column="patientname" />
+  <result property="patientage" column="patientage" />
+  <result property="patientaddress" column=" patientaddress" />
+  <result property="diseasedetails" column=" diseasedetails" />
+  <result property="doctorname" column=" doctorname" />
+  <result property="paymentdetails" column=" paymentdetails" />
+ </resultMap>
+ <select id="getById" parameterType="int" resultMap="result">
+  SELECT * FROM patientdb WHERE ID = #{id};
+ </select>
+ <update id="update" parameterType="com.hospital.AddDetailsModel">
+  UPDATE patientdb SET patientname = #{patientname}, patientage = #{patientage}, patientaddress = #{patientaddress}, diseasedetails = #{diseasedetails}, doctorname = #{doctorname}, paymentdetails = #{paymentdetails} WHERE
+  ID = #{id};
+ </update>
+ <delete id="deleteById" parameterType="int">
+  DELETE from patientdb WHERE ID = #{id};
+ </delete>
+ <select id="getAll" resultMap="result">
+  SELECT * FROM patientdb;
+ </select>
+</mapper>
